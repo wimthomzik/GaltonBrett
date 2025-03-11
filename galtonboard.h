@@ -19,14 +19,13 @@ public:
 protected:
     void paintEvent(QPaintEvent *event) override;
 
-    void timerEvent(QTimerEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+
+    //void timerEvent(QTimerEvent *event) override;
 
 private:
-    QElapsedTimer *elapsedTimer;
-    //Ball ball;
-    //QVector<Ball> walls;
-    QVector<QRect> pins;
-
+    QElapsedTimer *m_elapsedTimer;
+    QVector<QRect> m_pins;
 };
 
 #endif // GALTONBOARD_H

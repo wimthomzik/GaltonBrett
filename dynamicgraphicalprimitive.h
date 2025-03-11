@@ -14,7 +14,7 @@ public:
 
     Vec2 getVelocity() const;
 
-    void setVelocity(const wtm::Vec2T<float> &v);
+    void setVelocity(const Vec2 &v);
 
 protected:
     Vec2 m_velocity;

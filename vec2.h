@@ -163,7 +163,7 @@ namespace wtm
         }
 
     private:
-        T m_v[2] = {0, 0};
+        T m_v[2] {0, 0};
     };
 
     template <typename T> QDebug operator<<(QDebug dbg, const Vec2T<T> &v)

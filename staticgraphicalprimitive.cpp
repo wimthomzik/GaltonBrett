@@ -1,5 +1,8 @@
 #include <staticgraphicalprimitive.h>
+#include <vec2.h>
 
-StaticGraphicalPrimitive::StaticGraphicalPrimitive(QPointF position, QSizeF size, QRectF boundingBox)
-    : GraphicalPrimitive(position, size, boundingBox) {}
+using Vec2 = wtm::Vec2T<double>;
+
+StaticGraphicalPrimitive::StaticGraphicalPrimitive(Vec2 position, QRectF boundingBox)
+    : GraphicalPrimitive(position, boundingBox) {}
 
