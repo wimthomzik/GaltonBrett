@@ -1,24 +1,28 @@
 #ifndef GRAPHICALPRIMITIVE_H
 #define GRAPHICALPRIMITIVE_H
 
-#include <QObject>
-#include <QRectF>
-#include <vec2.h>
+#include <QRect>
+#include <QPainter>
+#include "vec2.h"
 
 using Vec2 = wtm::Vec2T<double>;
 
-class GraphicalPrimitive : public QObject
+class GraphicalPrimitive
 {
 public:
-    explicit GraphicalPrimitive() = default;
-    explicit GraphicalPrimitive(Vec2 position, QRectF boundingBox);
+    GraphicalPrimitive() = default;
+    GraphicalPrimitive(Vec2 position, QRectF boundingBox);
+    virtual ~GraphicalPrimitive() = default;
 
-    virtual void draw() = 0;
+    virtual void draw(QPainter &p) const = 0;
 
     const Vec2 &position() const {return m_position;}
 
-    void position(const Vec2 &newPosition) {m_position = newPosition;}
+    const QRectF &boundingBox() const {return m_boundingBox;}
 
+    void boundingBox(const QRectF &newBoundingBox) {m_boundingBox = newBoundingBox;}
+
+    void position(const Vec2 &newPosition) {m_position = newPosition;}
 
 protected:
     Vec2 m_position;

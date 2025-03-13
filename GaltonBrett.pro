@@ -25,20 +25,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        ball.cpp \
         canvas.cpp \
+        collisionengine.cpp \
         dynamicgraphicalprimitive.cpp \
         galtonboard.cpp \
         graphicalprimitive.cpp \
         main.cpp \
         dialog.cpp \
+        pin.cpp \
+        simulationengine.cpp \
         staticgraphicalprimitive.cpp
 
 HEADERS += \
+        ball.h \
         canvas.h \
+        collisionengine.h \
+        constants.h \
         dialog.h \
         dynamicgraphicalprimitive.h \
         galtonboard.h \
         graphicalprimitive.h \
+        pin.h \
+        simulationengine.h \
         staticgraphicalprimitive.h \
         vec2.h
 

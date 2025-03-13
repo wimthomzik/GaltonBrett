@@ -1,16 +1,19 @@
 #ifndef BALL_H
 #define BALL_H
 
-#include <dynamicgraphicalprimitive.h>
-
+#include "dynamicgraphicalprimitive.h"
+#include <QPainter>
 
 class Ball : public DynamicGraphicalPrimitive
 {
 public:
     explicit Ball() = default;
-    explicit Ball(QPointF position, QSizeF size, QRectF boundingBox, wtm::Vec2T<float> velocity);
+    explicit Ball(Vec2 position, QRectF boundingBox, Vec2 velocity);
 
-    void draw() override;
+    void draw(QPainter &p) const override;
+
+private:
+
 };
 
 #endif // BALL_H

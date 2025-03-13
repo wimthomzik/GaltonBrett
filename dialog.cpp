@@ -3,10 +3,12 @@
 #include "canvas.h"
 
 Dialog::Dialog(QWidget *parent)
-    : QDialog(parent), ui(new Ui::Dialog)/*, m_canvas(new Canvas(this))*/
+    : QDialog(parent), ui(new Ui::Dialog)
 {
     ui->setupUi(this);
     connect(ui->exitButton, &QPushButton::clicked, this, &Dialog::close);
+    connect(ui->startButton, &QPushButton::clicked, ui->canvas, &Canvas::startSimulation);
+    connect(ui->resetButton, &QPushButton::clicked, ui->canvas, &Canvas::resetSimulation);
 }
 
 Dialog::~Dialog()

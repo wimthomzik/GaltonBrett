@@ -1,22 +1,22 @@
 #ifndef DYNAMICGRAPHICALPRIMITIVE_H
 #define DYNAMICGRAPHICALPRIMITIVE_H
 
-#include <graphicalprimitive.h>
-#include <vec2.h>
+#include "graphicalprimitive.h"
+#include "vec2.h"
 
 using Vec2 = wtm::Vec2T<double>;
 
 class DynamicGraphicalPrimitive : public GraphicalPrimitive
 {
 public:
-    explicit DynamicGraphicalPrimitive() = default;
-    explicit DynamicGraphicalPrimitive(Vec2 position, QRectF boundingBox, Vec2 velocity);
+    DynamicGraphicalPrimitive() = default;
+    DynamicGraphicalPrimitive(Vec2 position, QRectF boundingBox, Vec2 velocity);
 
-    Vec2 getVelocity() const;
+    const Vec2 &velocity() const {return m_velocity;}
 
-    void setVelocity(const Vec2 &v);
+    void velocity(const Vec2 &newVelocity) {m_velocity = newVelocity;}
 
-protected:
+private:
     Vec2 m_velocity;
 };
 

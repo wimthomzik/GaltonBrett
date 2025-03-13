@@ -1,42 +1,42 @@
 #include "galtonboard.h"
-#include <QTimer>
-#include <QRect>
-#include <QPainter>
-#include <QDebug>
-#include <QMouseEvent>
+#include "pin.h"
+#include "ball.h"
+#include "constants.h"
+#include <QVector>
 
-GaltonBoard::GaltonBoard(QWidget *parent)
-    : QWidget (parent)
+using namespace constants;
+
+GaltonBoard::GaltonBoard()
 {
-//    startTimer(200);
+    QVector<Ball> balls;
+    balls.append(Ball(startPosBall, {startPosBall.x(), startPosBall.y(), rectSize, rectSize}, {0, 0}));
+    m_balls = balls;
+
+    QVector<Pin> pins;
+    pins.append(Pin(startPosPin, {startPosPin.x(), startPosPin.y(), rectSize, rectSize}));
+    m_pins = pins;
 }
 
-void GaltonBoard::paintEvent(QPaintEvent *)
+void GaltonBoard::draw(QPainter &p) const
 {
-    QPainter p(this);
-
-    p.fillRect(rect(), Qt::red);
-
-    for (const auto &r : m_pins) p.drawRect(r);
-
-    qDebug() << "redraw";
-}
-
-void GaltonBoard::mousePressEvent(QMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        qDebug() << "Left click.";
-    } else {
-        qDebug() << "Right click.";
+    for (const Pin &pin : m_pins)
+    {
+        pin.draw(p);
     }
 
-    m_pins.push_back({0, 0, 100, 100});
-
-    update();
+    for (const Ball &ball : m_balls)
+    {
+        ball.draw(p);
+    }
 }
 
-//void GaltonBoard::timerEvent(QTimerEvent *)
-//{
-//    pins.back().setX(pins.back().x() + 1);
-//    pins.back().setY(pins.back().y() + 1);
-//    update();
-//}
+void GaltonBoard::reset()
+{
+    running(false);
+    for (Ball &b : m_balls)
+    {
+        b.velocity({0,0});
+        b.position(startPosBall);
+        b.boundingBox({startPosBall.x(), startPosBall.y(), rectSize, rectSize});
+    }
+}

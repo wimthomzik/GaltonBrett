@@ -1,31 +1,29 @@
 #ifndef GALTONBOARD_H
 #define GALTONBOARD_H
 
-#include <ball.h>
-#include <QWidget>
 #include <QVector>
-#include <ball.h>
-#include <wall.h>
-#include <pin.h>
-#include <QElapsedTimer>
+#include "pin.h"
+#include "ball.h"
 
-class GaltonBoard : public QWidget
+class GaltonBoard
 {
-    Q_OBJECT
-
 public:
-    explicit GaltonBoard(QWidget *parent = nullptr);
+    explicit GaltonBoard();
 
-protected:
-    void paintEvent(QPaintEvent *event) override;
+    void draw(QPainter &p) const;
 
-    void mousePressEvent(QMouseEvent *event) override;
+    bool running() const {return m_running;}
 
-    //void timerEvent(QTimerEvent *event) override;
+    void running(bool newState) {m_running = newState;}
+
+    void reset();
+
+    QVector<Ball> &balls() {return m_balls;}
 
 private:
-    QElapsedTimer *m_elapsedTimer;
-    QVector<QRect> m_pins;
+    QVector<Pin> m_pins;
+    QVector<Ball> m_balls;
+    bool m_running = false;
 };
 
 #endif // GALTONBOARD_H

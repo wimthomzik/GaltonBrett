@@ -1,15 +1,18 @@
 #ifndef PIN_H
 #define PIN_H
 
-#include <staticgraphicalprimitive.h>
+#include "staticgraphicalprimitive.h"
+#include <QPolygon>
+#include <QPainter>
 
-class Pin : public StaticGraphicalPrimitive
+
+class Pin : StaticGraphicalPrimitive
 {
 public:
     explicit Pin() = default;
-    explicit Pin(QPointF position, QSizeF size, QRectF boundingBox);
+    explicit Pin(Vec2 position, QRectF boundingBox);
 
-    void draw() override;
+    void draw(QPainter &p) const override;
 };
 
 #endif // PIN_H

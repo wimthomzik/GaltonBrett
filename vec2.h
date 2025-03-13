@@ -14,7 +14,9 @@ namespace wtm
     class Vec2T
     {
     public:
+
         Vec2T() = default;
+
         Vec2T(T x, T y) : m_v{x, y} {}
 
         bool almostEq(const Vec2T<T> &v, const T epsilon = 0.0001) const
