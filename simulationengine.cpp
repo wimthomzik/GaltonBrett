@@ -9,6 +9,5 @@ void SimulationEngine::tick(GaltonBoard &gb, double deltaT)
         Vec2 v0 = b.velocity();
         b.velocity(v0 + constants::gravity * deltaT);
         b.position(b.position() + ((v0 + b.velocity()) / 2) * deltaT);
-        b.boundingBox({b.position().x(), b.position().y(), constants::rectSize, constants::rectSize});
     }
 }

@@ -7,10 +7,8 @@ Pin::Pin(const Vec2 &position, const QRectF &boundingBox)
 
 void Pin::draw(QPainter &p) const
 {
+    p.save();
+    p.translate(position().x(), position().y());
     p.drawRect(boundingBox());
-    QPolygonF triangle;
-    triangle << QPoint(boundingBox().center().x(), boundingBox().top())
-             << QPoint(boundingBox().left(), boundingBox().bottom())
-             << QPoint(boundingBox().right(), boundingBox().bottom());
-    p.drawPolygon(triangle);
+    p.restore();
 }

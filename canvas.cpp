@@ -19,7 +19,7 @@ void Canvas::paintEvent(QPaintEvent *)
     p.translate(m_offset.x(), m_offset.y());
     p.scale(m_scale.x(), -m_scale.y());
 
-    for (const GaltonBoard &g : m_galtonboards)
+    for (const auto &g : m_galtonboards)
     {
         g.draw(p);
     }
@@ -54,7 +54,7 @@ void Canvas::wheelEvent(QWheelEvent *event)
 void Canvas::timerEvent(QTimerEvent *)
 {
 
-    for (GaltonBoard &g : m_galtonboards)
+    for (auto &g : m_galtonboards)
     {
         if (g.running())
         {
@@ -69,7 +69,7 @@ void Canvas::timerEvent(QTimerEvent *)
 
 void Canvas::startSimulation()
 {
-    for (GaltonBoard &g : m_galtonboards)
+    for (auto &g : m_galtonboards)
     {
         g.running(true);
     }
@@ -78,7 +78,7 @@ void Canvas::startSimulation()
 
 void Canvas::resetSimulation()
 {
-    for (GaltonBoard &g : m_galtonboards)
+    for (auto &g : m_galtonboards)
     {
         g.reset();
     }

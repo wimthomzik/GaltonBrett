@@ -20,8 +20,6 @@ public:
 
     const QRectF &boundingBox() const {return m_boundingBox;}
 
-    void boundingBox(const QRectF &newBoundingBox) {m_boundingBox = newBoundingBox;}
-
     void position(const Vec2 &newPosition) {m_position = newPosition;}
 
 private:

@@ -9,22 +9,22 @@ using namespace constants;
 GaltonBoard::GaltonBoard()
 {
     QVector<Ball> balls;
-    balls.append(Ball(startPosBall, {startPosBall.x(), startPosBall.y(), rectSize, rectSize}, {0, 0}));
+    balls.append(Ball(startPosBall, {0, 0, rectSize, rectSize}, {0, 0}));
     m_balls = balls;
 
     QVector<Pin> pins;
-    pins.append(Pin(startPosPin, {startPosPin.x(), startPosPin.y(), rectSize, rectSize}));
+    pins.append(Pin(startPosPin, {0, 0, rectSize, rectSize}));
     m_pins = pins;
 }
 
 void GaltonBoard::draw(QPainter &p) const
 {
-    for (const Pin &pin : m_pins)
+    for (const auto &pin : m_pins)
     {
         pin.draw(p);
     }
 
-    for (const Ball &ball : m_balls)
+    for (const auto &ball : m_balls)
     {
         ball.draw(p);
     }
@@ -33,10 +33,9 @@ void GaltonBoard::draw(QPainter &p) const
 void GaltonBoard::reset()
 {
     running(false);
-    for (Ball &b : m_balls)
+    for (auto &b : m_balls)
     {
         b.velocity({0,0});
         b.position(startPosBall);
-        b.boundingBox({startPosBall.x(), startPosBall.y(), rectSize, rectSize});
     }
 }
