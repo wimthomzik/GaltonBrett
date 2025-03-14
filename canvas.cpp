@@ -58,7 +58,7 @@ void Canvas::timerEvent(QTimerEvent *)
     {
         if (g.running())
         {
-            m_simEngine.tick(&g, m_elapsedTimer->elapsed() / 1000.);
+            m_simEngine.tick(g, m_elapsedTimer->elapsed() / 1000.);
             // KollEngine(GaltonBoard)
             update();
         }

@@ -12,11 +12,11 @@ public:
 
     void draw(QPainter &p) const;
 
+    void reset();
+
     bool running() const {return m_running;}
 
-    void running(bool newState) {m_running = newState;}
-
-    void reset();
+    void running(const bool newState) {m_running = newState;}
 
     QVector<Ball> &balls() {return m_balls;}
 

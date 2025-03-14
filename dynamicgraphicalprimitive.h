@@ -10,7 +10,7 @@ class DynamicGraphicalPrimitive : public GraphicalPrimitive
 {
 public:
     DynamicGraphicalPrimitive() = default;
-    DynamicGraphicalPrimitive(Vec2 position, QRectF boundingBox, Vec2 velocity);
+    DynamicGraphicalPrimitive(const Vec2 &position, const QRectF &boundingBox, const Vec2 &velocity);
 
     const Vec2 &velocity() const {return m_velocity;}
 

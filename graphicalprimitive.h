@@ -11,7 +11,7 @@ class GraphicalPrimitive
 {
 public:
     GraphicalPrimitive() = default;
-    GraphicalPrimitive(Vec2 position, QRectF boundingBox);
+    GraphicalPrimitive(const Vec2 &position, const QRectF &boundingBox);
     virtual ~GraphicalPrimitive() = default;
 
     virtual void draw(QPainter &p) const = 0;
@@ -24,7 +24,7 @@ public:
 
     void position(const Vec2 &newPosition) {m_position = newPosition;}
 
-protected:
+private:
     Vec2 m_position;
     QRectF m_boundingBox;
 };

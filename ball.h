@@ -7,8 +7,8 @@
 class Ball : public DynamicGraphicalPrimitive
 {
 public:
-    explicit Ball() = default;
-    explicit Ball(Vec2 position, QRectF boundingBox, Vec2 velocity);
+    Ball() = default;
+    Ball(const Vec2 &position, const QRectF &boundingBox, const Vec2 &velocity);
 
     void draw(QPainter &p) const override;
 

@@ -10,7 +10,7 @@ class Pin : StaticGraphicalPrimitive
 {
 public:
     explicit Pin() = default;
-    explicit Pin(Vec2 position, QRectF boundingBox);
+    explicit Pin(const Vec2 &position, const QRectF &boundingBox);
 
     void draw(QPainter &p) const override;
 };

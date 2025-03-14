@@ -9,8 +9,8 @@ using Vec2 = wtm::Vec2T<double>;
 class StaticGraphicalPrimitive : public GraphicalPrimitive
 {
 public:
-    explicit StaticGraphicalPrimitive() = default;
-    explicit StaticGraphicalPrimitive(Vec2 position, QRectF boundingBox);
+    StaticGraphicalPrimitive() = default;
+    StaticGraphicalPrimitive(const Vec2 &position, const QRectF &boundingBox);
 };
 
 #endif // STATICGRAPHICALPRIMITIVE_H

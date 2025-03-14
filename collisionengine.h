@@ -2,10 +2,10 @@
 #define COLLISIONENGINE_H
 
 
-class collisionengine
+class CollisionEngine
 {
 public:
-    collisionengine();
+    CollisionEngine();
 };
 
 #endif // COLLISIONENGINE_H

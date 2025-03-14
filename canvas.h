@@ -7,6 +7,7 @@
 #include <QElapsedTimer>
 #include "galtonboard.h"
 #include "simulationengine.h"
+#include "collisionengine.h"
 
 using Vec2 = wtm::Vec2T<double>;
 
@@ -36,9 +37,10 @@ private:
     Vec2 m_offset;
     Vec2 m_prevPos;
     Vec2 m_scale {2, -2};
-    QVector<GaltonBoard> m_galtonboards; // multiple
+    QVector<GaltonBoard> m_galtonboards;
     QElapsedTimer *m_elapsedTimer;
     SimulationEngine m_simEngine;
+    CollisionEngine m_collEngine;
 };
 
 #endif // CANVAS_H

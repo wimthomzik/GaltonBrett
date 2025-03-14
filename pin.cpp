@@ -2,12 +2,12 @@
 #include <QPainter>
 #include <QPoint>
 
-Pin::Pin(Vec2 position, QRectF boundingBox)
+Pin::Pin(const Vec2 &position, const QRectF &boundingBox)
     : StaticGraphicalPrimitive(position, boundingBox) {}
 
 void Pin::draw(QPainter &p) const
 {
-    p.drawRect(m_boundingBox);
+    p.drawRect(boundingBox());
     QPolygonF triangle;
     triangle << QPoint(boundingBox().center().x(), boundingBox().top())
              << QPoint(boundingBox().left(), boundingBox().bottom())

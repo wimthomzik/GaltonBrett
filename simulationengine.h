@@ -8,7 +8,7 @@ class SimulationEngine
 public:
     SimulationEngine() = default;
 
-    void tick(GaltonBoard *gb, double deltaT);
+    void tick(GaltonBoard &gb, const double deltaT);
 };
 
 #endif // SIMULATIONENGINE_H
