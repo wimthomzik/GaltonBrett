@@ -27,5 +27,5 @@ void GaltonBoard::reset()
 {
     running(false);
     m_balls.clear();
-    ball();
+    spawnBall();
 }

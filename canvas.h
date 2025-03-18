@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QVector>
 #include <QElapsedTimer>
+#include <QTimer>
 #include "galtonboard.h"
 #include "simulationengine.h"
 #include "collisionengine.h"
@@ -32,6 +33,8 @@ public:
 public slots:
     void startSimulation();
     void resetSimulation();
+private slots:
+    void spawnBall();
 
 private:
     Vec2 m_offset;
@@ -41,6 +44,7 @@ private:
     QElapsedTimer *m_elapsedTimer;
     SimulationEngine m_simEngine;
     CollisionEngine m_collEngine;
+    QTimer *m_spawnTimer;
 
     QVector<Pin> pattern2Pins(const QVector<Vec2> &points) const;
 };

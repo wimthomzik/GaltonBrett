@@ -24,7 +24,7 @@ public:
 
     QVector<Ball> &balls() {return m_balls;}
 
-    void ball() {m_balls.append(Ball(startPosBall, {0, 0}, radius));}
+    void spawnBall() {m_balls.append(Ball(startPosBall, {0, 0}, radius));}
 
     void pins(const QVector<Pin> &pins) {m_pins = pins;}
 

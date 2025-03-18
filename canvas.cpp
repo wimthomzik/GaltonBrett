@@ -12,9 +12,13 @@ using Vec2 = wtm::Vec2T<double>;
 using namespace constants;
 
 Canvas::Canvas(QWidget *parent)
-    : QWidget(parent), m_elapsedTimer(new QElapsedTimer()), m_simEngine(SimulationEngine()), m_collEngine(CollisionEngine())
+    : QWidget(parent), m_elapsedTimer(new QElapsedTimer()), m_simEngine(SimulationEngine()), m_collEngine(CollisionEngine()), m_spawnTimer(new QTimer())
 {
     startTimer(10);
+
+    connect(m_spawnTimer, &QTimer::timeout, this, &Canvas::spawnBall);
+    m_spawnTimer->start(4000);
+
     m_galtonboards.emplace_back(std::make_unique<GaltonBoard>());
     PatternFactory::Instance().registerPattern(std::make_unique<TrianglePattern>());
     QVector<Vec2> points = PatternFactory::Instance().build("Triangle", 20.0);
@@ -22,7 +26,7 @@ Canvas::Canvas(QWidget *parent)
     for (const auto &g : m_galtonboards)
     {
         g->pins(pattern2Pins(points));
-        g->ball();
+        g->spawnBall();
     }
 
 }
@@ -95,6 +99,15 @@ void Canvas::resetSimulation()
     for (auto &g : m_galtonboards)
     {
         g->reset();
+    }
+    update();
+}
+
+void Canvas::spawnBall()
+{
+    for (auto &g : m_galtonboards)
+    {
+        g->spawnBall();
     }
     update();
 }
