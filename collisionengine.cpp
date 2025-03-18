@@ -1,6 +1,6 @@
 #include "collisionengine.h"
 
-CollisionEngine::CollisionEngine()
+void CollisionEngine::tick(GaltonBoard &gb)
 {
 
 }

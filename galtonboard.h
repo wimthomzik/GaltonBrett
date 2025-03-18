@@ -4,6 +4,10 @@
 #include <QVector>
 #include "pin.h"
 #include "ball.h"
+#include <memory>
+#include "constants.h"
+
+using namespace constants;
 
 class GaltonBoard
 {
@@ -19,6 +23,10 @@ public:
     void running(const bool newState) {m_running = newState;}
 
     QVector<Ball> &balls() {return m_balls;}
+
+    void ball() {m_balls.append(Ball(startPosBall, {0, 0}, radius));}
+
+    void pins(const QVector<Pin> &pins) {m_pins = pins;}
 
 private:
     QVector<Pin> m_pins;

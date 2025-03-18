@@ -3,14 +3,28 @@
 #include "vec2.h"
 #include <QPainter>
 #include <QPaintEvent>
+#include "patterfactory.h"
+#include "constants.h"
+#include "collisionengine.h"
+#include "trianglepattern.h"
 
 using Vec2 = wtm::Vec2T<double>;
+using namespace constants;
 
 Canvas::Canvas(QWidget *parent)
-    : QWidget(parent), m_elapsedTimer(new QElapsedTimer()), m_simEngine(SimulationEngine())
+    : QWidget(parent), m_elapsedTimer(new QElapsedTimer()), m_simEngine(SimulationEngine()), m_collEngine(CollisionEngine())
 {
     startTimer(10);
-    m_galtonboards.append(GaltonBoard());
+    m_galtonboards.emplace_back(std::make_unique<GaltonBoard>());
+    PatternFactory::Instance().registerPattern(std::make_unique<TrianglePattern>());
+    QVector<Vec2> points = PatternFactory::Instance().build("Triangle", 20.0);
+
+    for (const auto &g : m_galtonboards)
+    {
+        g->pins(pattern2Pins(points));
+        g->ball();
+    }
+
 }
 
 void Canvas::paintEvent(QPaintEvent *)
@@ -21,7 +35,7 @@ void Canvas::paintEvent(QPaintEvent *)
 
     for (const auto &g : m_galtonboards)
     {
-        g.draw(p);
+        g->draw(p);
     }
 }
 
@@ -56,10 +70,10 @@ void Canvas::timerEvent(QTimerEvent *)
 
     for (auto &g : m_galtonboards)
     {
-        if (g.running())
+        if (g->running())
         {
-            m_simEngine.tick(g, m_elapsedTimer->elapsed() / 1000.);
-            // KollEngine(GaltonBoard)
+            m_simEngine.tick(*g, m_elapsedTimer->elapsed() / 1000.);
+            m_collEngine.tick(*g);
             update();
         }
     }
@@ -71,7 +85,7 @@ void Canvas::startSimulation()
 {
     for (auto &g : m_galtonboards)
     {
-        g.running(true);
+        g->running(true);
     }
     m_elapsedTimer->start();
 }
@@ -80,8 +94,19 @@ void Canvas::resetSimulation()
 {
     for (auto &g : m_galtonboards)
     {
-        g.reset();
+        g->reset();
     }
     update();
 }
 
+QVector<Pin> Canvas::pattern2Pins(const QVector<Vec2> &points) const
+{
+    QVector<Pin> pins;
+
+    for (const auto &v : points)
+    {
+        pins.append(Pin(v, radius));
+    }
+
+    return pins;
+}

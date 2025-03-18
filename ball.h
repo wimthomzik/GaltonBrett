@@ -8,12 +8,11 @@ class Ball : public DynamicGraphicalPrimitive
 {
 public:
     Ball() = default;
-    Ball(const Vec2 &position, const QRectF &boundingBox, const Vec2 &velocity);
+    Ball(const Vec2 &position, const Vec2 &velocity, const int radius);
 
     void draw(QPainter &p) const override;
 
-private:
-
+    QRectF boundingBox() const override;
 };
 
 #endif // BALL_H

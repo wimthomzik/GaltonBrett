@@ -3,7 +3,7 @@
 
 using Vec2 = wtm::Vec2T<double>;
 
-GraphicalPrimitive::GraphicalPrimitive(const Vec2 &position, const QRectF &boundingBox)
-    : m_position(position), m_boundingBox(boundingBox) {}
+GraphicalPrimitive::GraphicalPrimitive(const Vec2 &position, const int radius)
+    : m_position(position), m_radius(radius) {}
 
 

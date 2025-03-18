@@ -1,13 +1,15 @@
 #include "ball.h"
 
-Ball::Ball(const Vec2 &position, const QRectF &boundingBox, const Vec2 &velocity)
-    : DynamicGraphicalPrimitive (position, boundingBox, velocity) {}
+
+Ball::Ball(const Vec2 &position, const Vec2 &velocity, const int radius)
+    : DynamicGraphicalPrimitive (position, velocity, radius) {}
 
 void Ball::draw(QPainter &p) const
 {
-    p.save();
-    p.translate(position().x(), position().y());
-    p.drawRect(boundingBox());
-    p.drawEllipse(boundingBox());
-    p.restore();
+    p.drawEllipse(position().x(), position().y(), radius() / 2, radius() / 2);
+}
+
+QRectF Ball::boundingBox() const
+{
+    return QRectF(position().x() - radius(), position().y() - radius(), radius() / 2, radius() / 2);
 }

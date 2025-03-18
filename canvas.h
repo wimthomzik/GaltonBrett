@@ -37,10 +37,12 @@ private:
     Vec2 m_offset;
     Vec2 m_prevPos;
     Vec2 m_scale {2, -2};
-    QVector<GaltonBoard> m_galtonboards;
+    std::vector<std::unique_ptr<GaltonBoard>> m_galtonboards;
     QElapsedTimer *m_elapsedTimer;
     SimulationEngine m_simEngine;
     CollisionEngine m_collEngine;
+
+    QVector<Pin> pattern2Pins(const QVector<Vec2> &points) const;
 };
 
 #endif // CANVAS_H

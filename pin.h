@@ -6,13 +6,15 @@
 #include <QPainter>
 
 
-class Pin : StaticGraphicalPrimitive
+class Pin : public StaticGraphicalPrimitive
 {
 public:
-    explicit Pin() = default;
-    explicit Pin(const Vec2 &position, const QRectF &boundingBox);
+    Pin() = default;
+    Pin(const Vec2 &position, const int radius);
 
     void draw(QPainter &p) const override;
+
+    QRectF boundingBox() const override;
 };
 
 #endif // PIN_H
