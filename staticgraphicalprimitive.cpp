@@ -3,6 +3,6 @@
 
 using Vec2 = wtm::Vec2T<double>;
 
-StaticGraphicalPrimitive::StaticGraphicalPrimitive(const Vec2 &position, const int radius)
-    : GraphicalPrimitive(position, radius) {}
+StaticGraphicalPrimitive::StaticGraphicalPrimitive(const Vec2 &position)
+    : GraphicalPrimitive(position) {}
 

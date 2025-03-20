@@ -29,11 +29,12 @@ SOURCES += \
         canvas.cpp \
         collisionengine.cpp \
         dynamicgraphicalprimitive.cpp \
+        floor.cpp \
         galtonboard.cpp \
         graphicalprimitive.cpp \
         main.cpp \
         dialog.cpp \
-        patterfactory.cpp \
+        patternfactory.cpp \
         patterngenerator.cpp \
         pin.cpp \
         simulationengine.cpp \
@@ -47,9 +48,10 @@ HEADERS += \
         constants.h \
         dialog.h \
         dynamicgraphicalprimitive.h \
+        floor.h \
         galtonboard.h \
         graphicalprimitive.h \
-        patterfactory.h \
+        patternfactory.h \
         patterngenerator.h \
         pin.h \
         simulationengine.h \

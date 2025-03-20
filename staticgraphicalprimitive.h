@@ -10,7 +10,7 @@ class StaticGraphicalPrimitive : public GraphicalPrimitive
 {
 public:
     StaticGraphicalPrimitive() = default;
-    StaticGraphicalPrimitive(const Vec2 &position, const int radius);
+    StaticGraphicalPrimitive(const Vec2 &position);
 };
 
 #endif // STATICGRAPHICALPRIMITIVE_H

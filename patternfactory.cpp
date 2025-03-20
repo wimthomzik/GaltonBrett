@@ -1,4 +1,4 @@
-#include "patterfactory.h"
+#include "patternfactory.h"
 
 void PatternFactory::registerPattern(GeneratorUPtr generator)
 {

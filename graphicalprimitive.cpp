@@ -3,7 +3,7 @@
 
 using Vec2 = wtm::Vec2T<double>;
 
-GraphicalPrimitive::GraphicalPrimitive(const Vec2 &position, const int radius)
-    : m_position(position), m_radius(radius) {}
+GraphicalPrimitive::GraphicalPrimitive(const Vec2 &position)
+    : m_position(position) {}
 
 

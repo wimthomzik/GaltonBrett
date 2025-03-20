@@ -4,17 +4,22 @@
 #include <QVector>
 #include "pin.h"
 #include "ball.h"
+#include "floor.h"
 #include <memory>
 #include "constants.h"
 
 using namespace constants;
 
-class GaltonBoard
+class GaltonBoard : public StaticGraphicalPrimitive
 {
 public:
-    explicit GaltonBoard();
+    GaltonBoard() = default;
 
-    void draw(QPainter &p) const;
+    GaltonBoard(const Vec2 &position);
+
+    void draw(QPainter &p) const override;
+
+     QRectF boundingBox() const override;
 
     void reset();
 
@@ -24,13 +29,18 @@ public:
 
     QVector<Ball> &balls() {return m_balls;}
 
-    void spawnBall() {m_balls.append(Ball(startPosBall, {0, 0}, radius));}
+    void spawnBall() {m_balls.append(Ball({0, 0}, {0, 0}));}
 
     void pins(const QVector<Pin> &pins) {m_pins = pins;}
+
+    QVector<Pin> &pins() {return m_pins;}
+
+    Floor &floor() {return m_floor;}
 
 private:
     QVector<Pin> m_pins;
     QVector<Ball> m_balls;
+    Floor m_floor;
     bool m_running = false;
 };
 

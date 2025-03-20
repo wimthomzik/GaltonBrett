@@ -19,7 +19,7 @@ namespace wtm
 
         Vec2T(T x, T y) : m_v{x, y} {}
 
-        bool almostEq(const Vec2T<T> &v, const T epsilon = 0.0001) const
+        bool almostEq(const Vec2T<T> &v, const T epsilon = 0.000001) const
         {
             return (*this - v).norm() < epsilon;
         }
@@ -172,19 +172,6 @@ namespace wtm
     {
         return dbg << "(" << v.x() << "," << v.y() << ")";
     }
-
-
-//    struct A
-//    {
-//        A() {qDebug() << "ctor A";}
-//        virtual ~A() {qDebug() << "dtor A";}
-//    };
-
-//    struct B : public A
-//    {
-//        B() : A() {qDebug() << "ctor B";}
-//        ~B() {qDebug() << "dtor B";}
-//    };
 
 } // namespace wtm
 

@@ -11,7 +11,7 @@ class GraphicalPrimitive
 {
 public:
     GraphicalPrimitive() = default;
-    GraphicalPrimitive(const Vec2 &position, const int radius);
+    GraphicalPrimitive(const Vec2 &position);
     virtual ~GraphicalPrimitive() = default;
 
     virtual void draw(QPainter &p) const = 0;
@@ -22,13 +22,8 @@ public:
 
     void position(const Vec2 &newPosition) {m_position = newPosition;}
 
-    int radius() const {return m_radius;}
-
-    void radius(const int radius) {m_radius = radius;}
-
 private:
     Vec2 m_position;
-    int m_radius;
 };
 
 #endif // GRAPHICALPRIMITIVE_H

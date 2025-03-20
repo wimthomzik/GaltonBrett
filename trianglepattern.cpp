@@ -9,7 +9,7 @@ QVector<Vec2> TrianglePattern::generate(double distance) const
 {
     QVector<Vec2> v;
 
-    for (size_t row = 0; row < numRow; row++)
+    for (size_t row = 0; row < 6; row++)
     {
         for (size_t col = 0; col <= row; col++)
         {

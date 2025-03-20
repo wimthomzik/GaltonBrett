@@ -34,7 +34,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0">
      <property name="leftMargin">
       <number>0</number>
      </property>
@@ -55,16 +55,29 @@
        <property name="text">
         <string>Start</string>
        </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item row="4" column="7">
+      <widget class="QPushButton" name="exitButton">
+       <property name="text">
+        <string>Exit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
       <widget class="QPushButton" name="resetButton">
        <property name="text">
         <string>Reset</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="2">
+     <item row="4" column="5">
+      <widget class="QComboBox" name="patternNames"/>
+     </item>
+     <item row="4" column="6">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -80,15 +93,26 @@
        </property>
       </spacer>
      </item>
-     <item row="6" column="0">
-      <widget class="QPushButton" name="exitButton">
+     <item row="4" column="4">
+      <widget class="QLabel" name="Pattern">
        <property name="text">
-        <string>Exit</string>
+        <string>Pattern:</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QComboBox" name="patternNames"/>
+      <widget class="QPushButton" name="stopButton">
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

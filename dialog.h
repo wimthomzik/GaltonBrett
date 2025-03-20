@@ -18,7 +18,6 @@ public:
 
 private:
     Ui::Dialog *ui;
-    Canvas *m_canvas;
 };
 
 #endif // DIALOG_H

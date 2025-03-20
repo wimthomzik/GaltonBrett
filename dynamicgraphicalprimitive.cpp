@@ -3,5 +3,5 @@
 
 using Vec2 = wtm::Vec2T<double>;
 
-DynamicGraphicalPrimitive::DynamicGraphicalPrimitive(const Vec2 &position, const Vec2 &velocity, const int radius)
-    : GraphicalPrimitive(position, radius), m_velocity(velocity) {}
+DynamicGraphicalPrimitive::DynamicGraphicalPrimitive(const Vec2 &position, const Vec2 &velocity)
+    : GraphicalPrimitive(position), m_velocity(velocity) {}
