@@ -17,7 +17,7 @@ void SimulationEngine::tick(GaltonBoard &gb, double deltaT)
     for (Ball &b : gb.balls())
     {
         Vec2 v0 = b.velocity();
-        b.velocity(v0 + gravity * deltaT);
+        b.velocity(v0 + gravity * 100 * deltaT);
         Vec2 resetPos = b.position();
         b.position(b.position() + ((v0 + b.velocity()) / 2) * deltaT); // Da konstante Beschleunigung wird der mittelwert der Beschleunigung verwendet (v0 * v1) / 2
 

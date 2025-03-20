@@ -18,7 +18,7 @@ Canvas::Canvas(QWidget *parent)
     connect(m_spawnTimer.get(), &QTimer::timeout, this, &Canvas::spawnBall);
 
     m_galtonboards.emplace_back(std::make_unique<GaltonBoard>(Vec2()));
-    m_galtonboards.emplace_back(std::make_unique<GaltonBoard>(Vec2(200, 0)));
+    m_galtonboards.emplace_back(std::make_unique<GaltonBoard>(Vec2(202, 0)));
 }
 
 void Canvas::changePattern(const QString &name)
@@ -39,9 +39,14 @@ void Canvas::paintEvent(QPaintEvent *)
     p.translate(m_offset.x(), m_offset.y());
     p.scale(m_scale.x(), -m_scale.y());
 
-    for (const auto &g : m_galtonboards)
+    for (size_t i = 0; i < m_galtonboards.size(); i++)
     {
-        g->draw(p);
+        if (i == m_selected)
+        {
+            p.setPen(Qt::red);
+        }
+        m_galtonboards[i]->draw(p);
+        p.setPen(Qt::black);
     }
 }
 
@@ -55,6 +60,7 @@ void Canvas::mousePressEvent(QMouseEvent *event)
         {
             if (m_galtonboards[i]->boundingBox().contains(mousePos) and i != m_selected) {
                 m_selected = i;
+                update();
             }
         }
     }
@@ -83,7 +89,6 @@ void Canvas::wheelEvent(QWheelEvent *event)
 
 void Canvas::timerEvent(QTimerEvent *)
 {
-
     for (auto &g : m_galtonboards)
     {
         if (g->running())
@@ -92,7 +97,6 @@ void Canvas::timerEvent(QTimerEvent *)
             update();
         }
     }
-
     m_elapsedTimer->restart();
 }
 

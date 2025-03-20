@@ -7,7 +7,7 @@ using Vec2 = wtm::Vec2T<double>;
 
 namespace constants
 {
-    const Vec2 gravity {0, 980.665};
+    const Vec2 gravity {0, 9.80665};
     const Vec2 startPosBall {175, 10};
     constexpr size_t distance {50};
 }
