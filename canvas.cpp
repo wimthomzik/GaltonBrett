@@ -104,7 +104,7 @@ void Canvas::startSimulation()
 {
     m_galtonboards[m_selected]->running(true);
     m_elapsedTimer->start();
-    m_spawnTimer->start(3000);
+    m_spawnTimer->start(2000);
 }
 
 void Canvas::resetSimulation()
