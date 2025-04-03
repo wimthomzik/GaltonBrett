@@ -8,7 +8,7 @@
 #include <memory>
 #include "constants.h"
 
-using namespace constants;
+using namespace global;
 
 class GaltonBoard : public StaticGraphicalPrimitive
 {
@@ -19,19 +19,19 @@ public:
 
     void draw(QPainter &p) const override;
 
-     QRectF boundingBox() const override;
+    QRectF boundingBox() const override;
 
     void reset();
 
     bool running() const {return m_running;}
 
-    void running(const bool newState) {m_running = newState;}
+    void setRunning(const bool newState) {m_running = newState;}
 
     QVector<Ball> &balls() {return m_balls;}
 
     void spawnBall() {m_balls.append(Ball({0, 0}, {0, 0}));}
 
-    void pins(const QVector<Pin> &pins) {m_pins = pins;}
+    void setPins(const QVector<Pin> &pins) {m_pins = pins;}
 
     QVector<Pin> &pins() {return m_pins;}
 

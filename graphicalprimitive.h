@@ -1,7 +1,7 @@
 #ifndef GRAPHICALPRIMITIVE_H
 #define GRAPHICALPRIMITIVE_H
 
-#include <QRect>
+#include <QRectF>
 #include <QPainter>
 #include "vec2.h"
 
@@ -20,7 +20,7 @@ public:
 
     const Vec2 &position() const {return m_position;}
 
-    void position(const Vec2 &newPosition) {m_position = newPosition;}
+    void setPosition(const Vec2 &newPosition) {m_position = newPosition;}
 
 private:
     Vec2 m_position;

@@ -60,7 +60,21 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="7">
+     <item row="4" column="1">
+      <widget class="QPushButton" name="stopButton">
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="6">
+      <widget class="QLabel" name="Speed">
+       <property name="text">
+        <string>Speed</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="9">
       <widget class="QPushButton" name="exitButton">
        <property name="text">
         <string>Exit</string>
@@ -74,10 +88,17 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="4">
+      <widget class="QLabel" name="Pattern">
+       <property name="text">
+        <string>Pattern:</string>
+       </property>
+      </widget>
+     </item>
      <item row="4" column="5">
       <widget class="QComboBox" name="patternNames"/>
      </item>
-     <item row="4" column="6">
+     <item row="4" column="8">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -93,25 +114,35 @@
        </property>
       </spacer>
      </item>
-     <item row="4" column="4">
-      <widget class="QLabel" name="Pattern">
-       <property name="text">
-        <string>Pattern:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QPushButton" name="stopButton">
-       <property name="text">
-        <string>Stop</string>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="3">
       <widget class="Line" name="line_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
+      </widget>
+     </item>
+     <item row="4" column="7">
+      <widget class="QComboBox" name="speedValues">
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>10</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>100</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1000</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>

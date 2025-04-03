@@ -5,11 +5,13 @@
 
 using Vec2 = wtm::Vec2T<double>;
 
-namespace constants
+namespace global
 {
-    const Vec2 gravity {0, 9.80665};
-    const Vec2 startPosBall {175, 10};
-    constexpr size_t distance {50};
+    const Vec2 GRAVITY {0, 9.80665};
+    constexpr double GB_WIDTH = 0.8;
+    constexpr double GB_HEIGHT = 1.4;
+    constexpr double BALL_RADIUS = .02;
+    constexpr double PATTERN_DISTANCE = 5 * BALL_RADIUS;
 }
 
 #endif // CONSTANTS_H

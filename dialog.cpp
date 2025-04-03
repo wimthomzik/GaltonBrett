@@ -16,6 +16,7 @@ Dialog::Dialog(QWidget *parent)
     connect(ui->stopButton, &QPushButton::clicked, ui->canvas, &Canvas::stopSimulation);
     ui->patternNames->addItems(PatternFactory::Instance().names());
     connect(ui->patternNames, &QComboBox::currentTextChanged, ui->canvas, &Canvas::changePattern);
+    connect(ui->speedValues, &QComboBox::currentTextChanged, ui->canvas, &Canvas::changeSpeedFac);
     ui->canvas->changePattern(QString("Triangle"));
 }
 

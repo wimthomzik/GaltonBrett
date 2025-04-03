@@ -5,46 +5,64 @@
 #include <random>
 
 
-using namespace constants;
+using namespace global;
 
 SimulationEngine::SimulationEngine()
     : m_collEngine(CollisionEngine()) {}
 
-void SimulationEngine::tick(GaltonBoard &gb, double deltaT)
+void SimulationEngine::tick(GaltonBoard &gb, double deltaT, int speedFac)
 {
     std::uniform_int_distribution<int> distribution(0,1);
-
-    for (Ball &b : gb.balls())
+    if(!deltaT)
     {
-        Vec2 v0 = b.velocity();
-        b.velocity(v0 + gravity * 100 * deltaT);
-        Vec2 resetPos = b.position();
-        b.position(b.position() + ((v0 + b.velocity()) / 2) * deltaT); // Da konstante Beschleunigung wird der mittelwert der Beschleunigung verwendet (v0 * v1) / 2
+        deltaT = 0.01;
+    }
 
-        if(m_collEngine.detect(b, gb.pins()))
+    for (int i = 0; i < speedFac; i++)
+    {
+        for (Ball &b : gb.balls())
         {
-            // Handle collision with pin
-            b.velocity(Vec2());
-            if (distribution(m_generator))
+            Vec2 v0 = b.velocity();
+            b.setVelocity(v0 + GRAVITY * deltaT);
+            Vec2 resetPos = b.position();
+            b.setPosition(b.position() + ((v0 + b.velocity()) / 2) * deltaT); // Da konstante Beschleunigung wird der mittelwert der Beschleunigung verwendet (v0 * v1) / 2
+
+            if(m_collEngine.detect(b, gb.pins()))
             {
-                b.position(b.position() + Vec2(10., 9.4));
+                if (gb.balls().back().position().y() > gb.pins()[1].position().y())
+                {
+                    if (m_spawnCB) (*m_spawnCB)();
+                }
+
+                // Handle collision with pin
+                b.setVelocity(Vec2());
+                if (distribution(m_generator))
+                {
+                    b.setPosition(b.position() + Vec2(PATTERN_DISTANCE / 2, PATTERN_DISTANCE / 2));
+                }
+                else
+                {
+                    b.setPosition(b.position() + Vec2(-(PATTERN_DISTANCE / 2), PATTERN_DISTANCE / 2));
+                }
             }
-            else
+            else if (m_collEngine.detect(b, gb.floor()))
             {
-                b.position(b.position() + Vec2(-10., 9.4));
+
+                // Handle Collision with floor
+                b.setVelocity({0,0});
+                b.setPosition(resetPos);
             }
-        }
-        else if (m_collEngine.detect(b, gb.floor()))
-        {
-            // Handle Collision with floor
-            b.velocity({0,0});
-            b.position(resetPos);
-        }
-        else if (m_collEngine.detect(b, gb.balls()))
-        {
-            // Handle Collision with sleeping Ball
-            b.velocity({0,0});
-            b.position(resetPos);
+            else if (m_collEngine.detect(b, gb.balls()))
+            {
+                // Handle Collision with sleeping Ball
+                b.setVelocity({0,0});
+                b.setPosition(resetPos);
+            }
         }
     }
+}
+
+void SimulationEngine::registerSpawnCB(SpawnCB *cb)
+{
+    m_spawnCB = cb;
 }

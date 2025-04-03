@@ -26,7 +26,7 @@ bool CollisionEngine::detect(const Ball &b, const QVector<Ball> &balls) const
 
 bool CollisionEngine::detect(const Ball &b, const Floor &f) const
 {
-    return f.boundingBox().intersects(b.boundingBox());
+    return b.boundingBox().intersects(f.boundingBox());
 }
 
 

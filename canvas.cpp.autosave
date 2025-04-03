@@ -47,11 +47,13 @@ void Canvas::changeSpeedFac(const QString &speed)
     setSpeedFac(speed.toInt());
 }
 
+// Draw all galton boards
 void Canvas::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
-    QPen     pen;
+    QPen pen;
 
+    // Set cosmetic pen to not scale thickness of drawn lines
     pen.setCosmetic(true);
     p.setPen(pen);
 
@@ -60,6 +62,7 @@ void Canvas::paintEvent(QPaintEvent *)
 
     for (size_t i = 0; i < m_galtonboards.size(); i++)
     {
+        // Mark selectes galton board red
         if (i == m_selectedBoard)
         {
             pen.setColor(Qt::red);
@@ -71,11 +74,15 @@ void Canvas::paintEvent(QPaintEvent *)
     }
 }
 
+// Sets selectedBoard and saves 
 void Canvas::mousePressEvent(QMouseEvent *event)
 {
     m_prevPosition = p2v(event->pos());
+    
+    // Transform screen coordinates to world coordinates by removing scaling and translating
     QPointF mousePos = v2p(p2v(event->pos()) - m_offset);
     mousePos = QPointF(mousePos.rx() / m_scale.x(), mousePos.ry() / -m_scale.y());
+    
     if (!m_galtonboards[m_selectedBoard]->boundingBox().contains(mousePos))
     {
         for (size_t i = 0; i < m_galtonboards.size(); i++)
@@ -88,6 +95,7 @@ void Canvas::mousePressEvent(QMouseEvent *event)
     }
 }
 
+// Sets n
 void Canvas::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() == Qt::LeftButton)

@@ -3,7 +3,6 @@
 #include "constants.h"
 
 using Vec2 = wtm::Vec2T<double>;
-using namespace constants;
 
 QVector<Vec2> TrianglePattern::generate(double distance) const
 {
@@ -14,7 +13,7 @@ QVector<Vec2> TrianglePattern::generate(double distance) const
         for (size_t col = 0; col <= row; col++)
         {
             double x = col * distance - (row * distance / 2);
-            double y = row * distance;
+            double y = row * distance * 0.886;
             v.append({x,y});
         }
      }

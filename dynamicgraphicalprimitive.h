@@ -10,11 +10,11 @@ class DynamicGraphicalPrimitive : public GraphicalPrimitive
 {
 public:
     DynamicGraphicalPrimitive() = default;
-    DynamicGraphicalPrimitive(const Vec2 &position, const Vec2 &velocity);
+    DynamicGraphicalPrimitive(const Vec2 &position, const Vec2 &setVelocity);
 
     const Vec2 &velocity() const {return m_velocity;}
 
-    void velocity(const Vec2 &newVelocity) {m_velocity = newVelocity;}
+    void setVelocity(const Vec2 &newVelocity) {m_velocity = newVelocity;}
 
 private:
     Vec2 m_velocity;
