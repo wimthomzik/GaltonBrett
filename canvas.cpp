@@ -10,19 +10,19 @@
 using Vec2 = wtm::Vec2T<double>;
 using namespace global;
 
-SpawnCB::SpawnCB(Canvas *canvas) : canvas(canvas) {}
+//SpawnCB::SpawnCB(Canvas *canvas) : canvas(canvas) {}
 
-void SpawnCB::operator()()
-{
-    canvas->spawnBall();
-}
+//void SpawnCB::operator()()
+//{
+//    canvas->spawnBall();
+//}
 
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent), m_elapsedTimer(std::make_unique<QElapsedTimer>()), m_simEngine(SimulationEngine())/*, m_spawnTimer(std::make_unique<QTimer>())*/
 {
     startTimer(10);
 
-    m_simEngine.registerSpawnCB(new SpawnCB(this));
+//    m_simEngine.registerSpawnCB(new SpawnCB(this));
 
     m_galtonboards.emplace_back(std::make_unique<GaltonBoard>(Vec2()));
     m_galtonboards.emplace_back(std::make_unique<GaltonBoard>(Vec2(GB_WIDTH + .01, 0)));
@@ -37,6 +37,7 @@ void Canvas::changePattern(const QString &name)
     for (const auto &g : m_galtonboards)
     {
         g->setPins(pattern2Pins(points));
+        // Spawn inital Ball
         g->spawnBall();
     }
 }
@@ -47,11 +48,13 @@ void Canvas::changeSpeedFac(const QString &speed)
     setSpeedFac(speed.toInt());
 }
 
+// Draw all galton boards
 void Canvas::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
-    QPen     pen;
+    QPen pen;
 
+    // Set cosmetic pen to not scale thickness of drawn lines
     pen.setCosmetic(true);
     p.setPen(pen);
 
@@ -60,6 +63,7 @@ void Canvas::paintEvent(QPaintEvent *)
 
     for (size_t i = 0; i < m_galtonboards.size(); i++)
     {
+        // Mark selectes galton board red
         if (i == m_selectedBoard)
         {
             pen.setColor(Qt::red);
@@ -71,11 +75,15 @@ void Canvas::paintEvent(QPaintEvent *)
     }
 }
 
+// Sets selectedBoard and saves prevPosition for translation
 void Canvas::mousePressEvent(QMouseEvent *event)
 {
     m_prevPosition = p2v(event->pos());
+
+    // Transform screen coordinates to world coordinates by removing scaling and translating
     QPointF mousePos = v2p(p2v(event->pos()) - m_offset);
     mousePos = QPointF(mousePos.rx() / m_scale.x(), mousePos.ry() / -m_scale.y());
+
     if (!m_galtonboards[m_selectedBoard]->boundingBox().contains(mousePos))
     {
         for (size_t i = 0; i < m_galtonboards.size(); i++)
@@ -88,6 +96,7 @@ void Canvas::mousePressEvent(QMouseEvent *event)
     }
 }
 
+// Sets new offset/translation
 void Canvas::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() == Qt::LeftButton)
@@ -99,6 +108,7 @@ void Canvas::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
+// Scales around mouse pointer
 void Canvas::wheelEvent(QWheelEvent *event)
 {
     Vec2 mousePos = p2v(event->pos());
@@ -108,6 +118,7 @@ void Canvas::wheelEvent(QWheelEvent *event)
     update();
 }
 
+// Updates galtonboards regularly
 void Canvas::timerEvent(QTimerEvent *)
 {
     double  dt = double(m_elapsedTimer->elapsed()) / 1000.;
@@ -159,7 +170,7 @@ QVector<Pin> Canvas::pattern2Pins(const QVector<Vec2> &points) const
 
     for (const auto &v : points)
     {
-        pins.append(Pin(v + Vec2(0, PATTERN_DISTANCE))); // lowering pins so that ball start 30 over pins
+        pins.append(Pin(v + Vec2(0, PATTERN_DISTANCE))); // Lowering starting position to not collide with ball right away
     }
 
     return pins;

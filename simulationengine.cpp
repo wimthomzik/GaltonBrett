@@ -31,7 +31,8 @@ void SimulationEngine::tick(GaltonBoard &gb, double deltaT, int speedFac)
             {
                 if (gb.balls().back().position().y() > gb.pins()[1].position().y())
                 {
-                    if (m_spawnCB) (*m_spawnCB)();
+                    gb.spawnBall();
+//                    if (m_spawnCB) (*m_spawnCB)();
                 }
 
                 // Handle collision with pin
@@ -62,7 +63,7 @@ void SimulationEngine::tick(GaltonBoard &gb, double deltaT, int speedFac)
     }
 }
 
-void SimulationEngine::registerSpawnCB(SpawnCB *cb)
-{
-    m_spawnCB = cb;
-}
+//void SimulationEngine::registerSpawnCB(SpawnCB *cb)
+//{
+//    m_spawnCB = cb;
+//}
